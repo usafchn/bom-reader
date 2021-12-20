@@ -11,8 +11,14 @@ necessary. It can also return the encoding detected by the BOM.
 
 ## Installation
 
+Install original package:
+
     go get -u github.com/dimchansky/utfbom
-    
+
+Or install this package:
+
+    go get -u github.com/usafchn/bomreader
+
 ## Example
 
 ```go

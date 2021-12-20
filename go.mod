@@ -1,1 +1,1 @@
-module github.com/usafchn/bom-reader
+module github.com/usafchn/bomreader

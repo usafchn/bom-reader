@@ -1,7 +1,7 @@
 // Package utfbom implements the detection of the BOM (Unicode Byte Order Mark) and removing as necessary.
 // It wraps an io.Reader object, creating another object (Reader) that also implements the io.Reader
 // interface but provides automatic BOM checking and removing as necessary.
-package reader
+package bomreader
 
 import (
 	"errors"
@@ -116,7 +116,7 @@ func (r *Reader) readErr() error {
 	return err
 }
 
-var errNegativeRead = errors.New("utfbom: reader returned negative count from Read")
+var errNegativeRead = errors.New("bom-reader: reader returned negative count from Read")
 
 func detectUtf(rd io.Reader) (enc Encoding, buf []byte, err error) {
 	buf, err = readBOM(rd)
