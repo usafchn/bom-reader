@@ -1,4 +1,4 @@
-package utfbom
+package reader
 
 import (
 	"io"
@@ -49,6 +49,8 @@ var testCases = []struct {
 	{"21", []byte("\xFF\xFE"), io.ErrClosedPipe, Unknown, []byte{0xFF, 0xFE}},
 	{"22", []byte("\xFF"), io.ErrClosedPipe, Unknown, []byte{0xFF}},
 	{"23", []byte("\x68\x65"), nil, Unknown, []byte{0x68, 0x65}},
+	{"24", []byte("\x84\x31\x95\x33"), nil, GB18030, []byte{}},
+	{"25", []byte("\x84\x31\x95\x33feature"), nil, GB18030, []byte("feature")},
 }
 
 type sliceReader struct {

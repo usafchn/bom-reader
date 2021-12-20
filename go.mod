@@ -1,1 +1,1 @@
-module github.com/dimchansky/utfbom
+module github.com/usafchn/bom-reader

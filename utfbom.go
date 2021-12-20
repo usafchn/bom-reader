@@ -1,7 +1,7 @@
 // Package utfbom implements the detection of the BOM (Unicode Byte Order Mark) and removing as necessary.
 // It wraps an io.Reader object, creating another object (Reader) that also implements the io.Reader
 // interface but provides automatic BOM checking and removing as necessary.
-package utfbom
+package reader
 
 import (
 	"errors"
@@ -30,6 +30,9 @@ const (
 
 	// UTF-32, little-endian, BOM bytes: FF FE 00 00
 	UTF32LittleEndian
+
+	// GB18030, BOM bytes: 84 31 95 33
+	GB18030
 )
 
 // String returns a user-friendly string representation of the encoding. Satisfies fmt.Stringer interface.
@@ -45,6 +48,8 @@ func (e Encoding) String() string {
 		return "UTF32BigEndian"
 	case UTF32LittleEndian:
 		return "UTF32LittleEndian"
+	case GB18030:
+		return "GB18030"
 	default:
 		return "Unknown"
 	}
@@ -123,6 +128,9 @@ func detectUtf(rd io.Reader) (enc Encoding, buf []byte, err error) {
 		if isUTF32LittleEndianBOM4(buf) {
 			return UTF32LittleEndian, nilIfEmpty(buf[4:]), err
 		}
+		if isGB18030BOM4(buf) {
+			return GB18030, nilIfEmpty(buf[4:]), err
+		}
 	}
 
 	if len(buf) > 2 && isUTF8BOM3(buf) {
@@ -170,6 +178,10 @@ func isUTF32BigEndianBOM4(buf []byte) bool {
 
 func isUTF32LittleEndianBOM4(buf []byte) bool {
 	return buf[0] == 0xFF && buf[1] == 0xFE && buf[2] == 0x00 && buf[3] == 0x00
+}
+
+func isGB18030BOM4(buf []byte) bool {
+	return buf[0] == 0x84 && buf[1] == 0x31 && buf[2] == 0x95 && buf[3] == 0x33
 }
 
 func isUTF8BOM3(buf []byte) bool {

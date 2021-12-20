@@ -1,6 +1,13 @@
-# utfbom [![Godoc](https://godoc.org/github.com/dimchansky/utfbom?status.png)](https://godoc.org/github.com/dimchansky/utfbom) [![License](https://img.shields.io/:license-apache-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Build Status](https://travis-ci.org/dimchansky/utfbom.svg?branch=master)](https://travis-ci.org/dimchansky/utfbom) [![Go Report Card](https://goreportcard.com/badge/github.com/dimchansky/utfbom)](https://goreportcard.com/report/github.com/dimchansky/utfbom) [![Coverage Status](https://coveralls.io/repos/github/dimchansky/utfbom/badge.svg?branch=master)](https://coveralls.io/github/dimchansky/utfbom?branch=master)
+This project is forked from [dimchansky/utfbom](https://github.com/dimchansky/utfbom). And the main
+change of this project is to support GB-18030 encoding, see (
+wikipedia)[https://en.wikipedia.org/wiki/Byte_order_mark] for details
 
-The package utfbom implements the detection of the BOM (Unicode Byte Order Mark) and removing as necessary. It can also return the encoding detected by the BOM.
+Below is the original README information
+
+---
+
+The package utfbom implements the detection of the BOM (Unicode Byte Order Mark) and removing as
+necessary. It can also return the encoding detected by the BOM.
 
 ## Installation
 
